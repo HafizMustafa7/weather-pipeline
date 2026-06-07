@@ -1,0 +1,24 @@
+name: Weather ETL Daily
+
+on:
+  schedule:
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      - run: pip install -r requirements.txt
+      - name: Run pipeline
+        env:
+          OWM_API_KEY: ${{ secrets.OWM_API_KEY }}
+          AWS_ACCESS_KEY: ${{ secrets.AWS_ACCESS_KEY }}
+          AWS_SECRET_KEY: ${{ secrets.AWS_SECRET_KEY }}
+          AWS_BUCKET: ${{ secrets.AWS_BUCKET }}
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: python pipeline.py
