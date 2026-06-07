@@ -242,6 +242,4 @@ If you found this useful or want to collaborate — feel free to reach out!
 
 ---
 
-<p align="center">
-  <i>Made with ❤️ — because good data engineering deserves a good story.</i>
-</p>
+
